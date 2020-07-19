@@ -21,7 +21,9 @@ public void Method_ParamIsNull_ReturnError([Values] bool hasMidData){
   var faceData = hasMidData ? new MidFaceData(){
       Thresold = null,
   }: null;  
+  
+  Call Method(faceData);
+  
+  略
 }
-
-   Call Method(faceData);
 ```
