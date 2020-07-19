@@ -2,6 +2,9 @@
 單元測試的藝術讀後心得
 
 [單元測試的藝術第一章](https://hackmd.io/ioqU9RJIRzeGt-sedOV5aw?view)
+[單元測試的藝術第二章](https://hackmd.io/IXPCBdUAQMibiD3XbqHsvg?view)
+
+
 
 # 疑惑
 - 什麼時候使用參數化(例如 TestCase ) , 有沒有一定可以使用 , 或是一定不能使用的準則
