@@ -22,4 +22,6 @@ public void Method_ParamIsNull_ReturnError([Values] bool hasMidData){
       Thresold = null,
   }: null;  
 }
+
+   Call Method(faceData);
 ```
