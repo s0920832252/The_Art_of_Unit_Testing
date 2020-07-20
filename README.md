@@ -30,3 +30,21 @@ public void Method_ParamIsNull_ReturnError([Values] bool hasMidData){
   略
 }
 ```
+
+# 疑惑2
+- 甚麼時候完成單元測試 ?
+假設一個方法有兩個參數
+```C# 
+//  資料來源皆為 FromForm
+// JsonBinder.cs 把字串轉成 JsonObj
+// ImageBinder.cs 把檔案(IFormFile)轉成對應類別
+// CreateRequest.cs Model (儲存對應的資料 - 由 JsonObj 轉成)
+// ImageSomething.cs 檔案轉成對應類別的儲存實體
+public IActionResult Create(
+        [ModelBinder(BinderType = typeof(JsonBinder), Name = "jsonStr")] CreateRequest createRequest,
+        [ModelBinder(BinderType = typeof(ImageBinder), Name = "oneImage")] ImageSomething thumbnail
+        )
+```
+
+我再完成 Create 的期間 , 可能因為亙本還沒有很全面的了解 , 所以會頻繁修改原本 ImageSomething 或是其他類別的實作.
+這個時候如果我選擇的是先完成 JsonBinder ImageBinder CreateRequest ImageSomething 的單元測試 , 就也需要頻繁的修改這些單元測試
