@@ -96,3 +96,19 @@ public (INameChecker , IDominService , IMathService) GetControllerParam(){
     初始化 INameChecker , IDominService , IMathService , 然後用 Tuple 回傳 
 } 
 ```
+
+# 疑惑4
+假設我限制使用者只能傳 jpeg 圖片給我 , 若不是 jpeg 圖片 , 我會回傳 ErrorResponse 給它. 以及不能將這張圖片存入 DB.
+所以我的測試就可能要寫成下列這樣嗎...?
+```C#
+[Test]
+public void MethodName_WhenImageNotJpeg_ReturnWrongImageFormatError{
+    # Arrange
+    # Act
+    # Assert
+    1. 驗證 Response Code
+    2. 驗證 Response Json Str
+    3. 驗證 Db 是否沒有新增圖片
+} 
+```
+
