@@ -48,3 +48,51 @@ public IActionResult Create(
 
 我再完成 Create 的期間 , 可能因為亙本還沒有很全面的了解 , 所以會頻繁修改原本 ImageSomething 或是其他類別的實作.
 這個時候如果我選擇的是先完成 JsonBinder ImageBinder CreateRequest ImageSomething 的單元測試 , 就也需要頻繁的修改這些單元測試
+
+# 疑惑 3
+假設我有多個單元測試都需要設定多個相依物件 , 是否應該替每一個相依物件建立一個產生實例的方法 , 還是直接使用一個方法產生多個實例
+```C# 
+[Test]
+public void MyTest(){
+var fakeNameChecker = new Mock<INameChecker>
+fakeNameChecker.Setup(...)
+略...
+
+var fakeDominService = new Mock<IDominService>
+fakeDominService.Setup(...)
+略...
+
+var fakeMathService = new Mock<IMathService>
+fakeMathService.Setup(...)
+略...
+
+var controller = new MyController(fakeNameChecker.Object , fakeDominService.Object , fakeMathService.Object)
+
+...
+
+}
+```
+```C#
+方案1
+public class NameCheckerUtility{
+  public static INameChecker GetNameChecker(一些參數用來初始化NameChecker){
+     略...
+  }
+}
+public class fakeDominServiceUtility{
+  public static IDominService GetNameChecker(一些參數用來初始化fakeDominService){
+     略...
+  }
+}
+public class fakeMathServiceUtility{
+  public static IMathService GetNameChecker(一些參數用來初始化fakeMathService){
+     略...
+  }
+}
+```
+```C#
+方案2
+public (INameChecker , IDominService , IMathService) GetControllerParam(){
+    初始化 INameChecker , IDominService , IMathService , 然後用 Tuple 回傳 
+} 
+```
